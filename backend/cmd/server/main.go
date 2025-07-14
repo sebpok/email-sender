@@ -3,7 +3,7 @@ package main
 import (
 	"net/http"
 
-	v1 "github.com/sebpok/email-sender/backend/internal/api/v1"
+	v1 "github.com/sebpok/email-sender/internal/api/v1"
 )
 
 func main() {

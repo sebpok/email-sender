@@ -3,7 +3,7 @@ package v1
 import (
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
-	"github.com/sebpok/email-sender/backend/internal/api/v1/handlers"
+	"github.com/sebpok/email-sender/internal/api/v1/handlers"
 )
 
 func NewRouter() *chi.Mux {
