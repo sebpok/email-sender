@@ -3,12 +3,12 @@ version: '3.8'
 services:
   postgres:
     image: postgres:15-alpine
-    container_name: email_scheduler_db
+    container_name: email_sender_db
     restart: unless-stopped
     environment:
-      POSTGRES_DB: email_scheduler
-      POSTGRES_USER: scheduler_user
-      POSTGRES_PASSWORD: secure_password_123
+      POSTGRES_DB: email_sender
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
       POSTGRES_HOST_AUTH_METHOD: trust
     ports:
       - "5432:5432"
