@@ -14,4 +14,4 @@ func NewRouter() *chi.Mux {
 	r.Get("/health", handlers.CheckHealthHandler)
 
 	return r
-} 
+}
