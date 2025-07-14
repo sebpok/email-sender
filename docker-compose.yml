@@ -1,42 +1,24 @@
-version: '3.8'
-
 services:
-  postgres:
-    image: postgres:15-alpine
-    container_name: email_sender_db
-    restart: unless-stopped
+  db:
+    image: postgres
+    restart: no
+    # set shared memory limit when using docker-compose
+    shm_size: 128mb
+    # or set shared memory limit when deploy via swarm stack
+    #volumes:
+    #  - type: tmpfs
+    #    target: /dev/shm
+    #    tmpfs:
+    #      size: 134217728 # 128*2^20 bytes = 128Mb
+    ports:
+      - "5432:5432"
     environment:
       POSTGRES_DB: email_sender
       POSTGRES_USER: user
       POSTGRES_PASSWORD: password
-      POSTGRES_HOST_AUTH_METHOD: trust
-    ports:
-      - "5432:5432"
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U scheduler_user -d email_scheduler"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
 
-  pgadmin:
-    image: dpage/pgadmin4:latest
-    container_name: email_scheduler_pgadmin
-    restart: unless-stopped
-    environment:
-      PGADMIN_DEFAULT_EMAIL: admin@example.com
-      PGADMIN_DEFAULT_PASSWORD: admin123
+  adminer:
+    image: adminer
+    restart: no 
     ports:
-      - "8080:80"
-    depends_on:
-      - postgres
-    volumes:
-      - pgadmin_data:/var/lib/pgadmin
-
-  volumes:
-    postgres_data:
-      driver: local
-    pgadmin_data:
-      driver: local
+      - "8081:8080"
