@@ -29,7 +29,6 @@ func Connect() {
 		log.Fatal(err)
 	}
 
-	log.Println("DB CONN IS WORKING")
 	conn = c
 }
 

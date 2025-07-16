@@ -8,7 +8,6 @@ import (
 
 func NewRouter() *chi.Mux {
 	r := chi.NewRouter()
-
 	r.Use(middleware.Logger)
 
 	r.Get("/health", handlers.CheckHealthHandler)
